@@ -79,8 +79,7 @@ function presentInformation(info) {
 	infostr=infostr+"</table>";
 	
 	$('#detailscontent').append(infostr);
-	
-	
+		
 }
 
 function presentLaps(laps) {

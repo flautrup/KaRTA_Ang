@@ -1,17 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="KaRTA">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>KaRTA</title>
 <link type="text/css" href="css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
 <link type="text/css" href="css/main.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.9.0.custom.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript" src="js/highcharts.js"></script>
-
 </head>
-<body>
+<body >
     <div id="background">
 	<div id="filecontent"></div>
 	<div id="dialogAlert"></div>
@@ -20,9 +16,27 @@
 			<div id="information">
                 Information
             </div>
-            <div id="informationholder">
-			    <div id="informationcontent"></div>
-                <div id="detailscontent"></div>
+            <div id="informationholder" ng-controller="InformationCtrl">
+			    <div id="informationcontent" >
+    		       <table>
+                        <tr class='infostyle'><td class='infoheader'>Format:</td><td>{{format}}</td></tr>
+                        <tr class='infostyle'><td class='infoheader'>Venue:</td><td>{{venue}}</td></tr>
+	                    <tr class='infostyle'><td class='infoheader'>Vehicle:</td><td>{{vehicle}}</td></tr>
+	                    <tr class='infostyle'><td class='infoheader'>User:</td><td>{{user}}</td></tr>
+	                </table>
+			    </div>
+                <div id="detailscontent" >
+                    <table>
+                        <tr class='detailsstyle'><td class='infoheader'>DataSource:</td><td>{{datasource}}</td></tr>
+                        <tr class='detailsstyle'><td class='infoheader'>Comment:</td><td>{{comment}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Date:</td><td>{{date}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Time:</td><td>{{time}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>SampleRate:</td><td>{{samplerate}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Duration:</td><td>{{duration}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Segment:</td><td>{{segment}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Beacon Markers:</td><td>{{beaconmarkers}}</td></tr>
+	                </table>    
+                </div>
             </div>
 	</div>
     <div id="footer">
@@ -97,10 +111,15 @@ The colored dots show where you shift.</p>
  
     </div>
 
-	<script type="text/javascript">
-        $(UI());
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controllers.js"></script>
+
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script type="text/javascript">
+    $(UI());
 		
-	</script>
+</script>
 </body>
 </html>
 
