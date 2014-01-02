@@ -3,12 +3,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>KaRTA</title>
-<link type="text/css" href="css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
 <link type="text/css" href="css/main.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-ui-1.9.0.custom.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/controllers.js"></script>
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script type="text/javascript" src="js/directives/highchart.js"></script>
+<script type="text/javascript" src="js/ui-bootstrap-0.4.0.min.js"></script>
+
 </head>
 <body >
-    <div id="background">
+    <div id="background" ng-controller="AppCtrl">
 	<div id="filecontent"></div>
 	<div id="dialogAlert"></div>
 	<div id="header">
@@ -16,25 +23,25 @@
 			<div id="information">
                 Information
             </div>
-            <div id="informationholder" ng-controller="InformationCtrl">
+            <div id="informationholder" >
 			    <div id="informationcontent" >
     		       <table>
-                        <tr class='infostyle'><td class='infoheader'>Format:</td><td>{{format}}</td></tr>
-                        <tr class='infostyle'><td class='infoheader'>Venue:</td><td>{{venue}}</td></tr>
-	                    <tr class='infostyle'><td class='infoheader'>Vehicle:</td><td>{{vehicle}}</td></tr>
-	                    <tr class='infostyle'><td class='infoheader'>User:</td><td>{{user}}</td></tr>
+                        <tr class='infostyle'><td class='infoheader'>Format:</td><td>{{info.format}}</td></tr>
+                        <tr class='infostyle'><td class='infoheader'>Venue:</td><td>{{info.venue}}</td></tr>
+	                    <tr class='infostyle'><td class='infoheader'>Vehicle:</td><td>{{info.vehicle}}</td></tr>
+	                    <tr class='infostyle'><td class='infoheader'>User:</td><td>{{info.user}}</td></tr>
 	                </table>
 			    </div>
                 <div id="detailscontent" >
                     <table>
-                        <tr class='detailsstyle'><td class='infoheader'>DataSource:</td><td>{{datasource}}</td></tr>
-                        <tr class='detailsstyle'><td class='infoheader'>Comment:</td><td>{{comment}}</td></tr>
-	                    <tr class='detailsstyle'><td class='infoheader'>Date:</td><td>{{date}}</td></tr>
-	                    <tr class='detailsstyle'><td class='infoheader'>Time:</td><td>{{time}}</td></tr>
-	                    <tr class='detailsstyle'><td class='infoheader'>SampleRate:</td><td>{{samplerate}}</td></tr>
-	                    <tr class='detailsstyle'><td class='infoheader'>Duration:</td><td>{{duration}}</td></tr>
-	                    <tr class='detailsstyle'><td class='infoheader'>Segment:</td><td>{{segment}}</td></tr>
-	                    <tr class='detailsstyle'><td class='infoheader'>Beacon Markers:</td><td>{{beaconmarkers}}</td></tr>
+                        <tr class='detailsstyle'><td class='infoheader'>DataSource:</td><td>{{info.datasource}}</td></tr>
+                        <tr class='detailsstyle'><td class='infoheader'>Comment:</td><td>{{info.comment}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Date:</td><td>{{info.date}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Time:</td><td>{{info.time}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>SampleRate:</td><td>{{info.samplerate}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Duration:</td><td>{{info.duration}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Segment:</td><td>{{info.segment}}</td></tr>
+	                    <tr class='detailsstyle'><td class='infoheader'>Beacon Markers:</td><td>{{info.beaconmarkers}}</td></tr>
 	                </table>    
                 </div>
             </div>
@@ -52,8 +59,8 @@
 				<li><a href="#tabs-3">About</a></li>
 			</ul>
 			<div id="tabs-1">
-				<input type="file" id="telemetryfile" name="files[]" />
-				<button onclick="abortRead();">Cancel read</button>
+                <input type="file" file-change="setFile">
+                {{file.name}}
 			</div>
 			<div id="tabs-2">
 				<!-- Main graph window -->
@@ -111,11 +118,7 @@ The colored dots show where you shift.</p>
  
     </div>
 
-<script type="text/javascript" src="js/angular.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-<script type="text/javascript" src="js/controllers.js"></script>
 
-<script type="text/javascript" src="js/highcharts.js"></script>
 <script type="text/javascript">
     $(UI());
 		

@@ -1,20 +1,20 @@
-KaRTA.controller('InformationCtrl', function InformationCtrl($scope,data) {
-    
-    var info=data.getInformation();
-    
-    $scope.format=info.format;
-    $scope.venue="Test";
-    $scope.vehicle="Test";
-    $scope.user="Test";
-    $scope.datasource="Test";
-    $scope.comment="Test";
-    $scope.date="Test";
-    $scope.time="Test";
-    $scope.samplerate="Test";
-    $scope.duration="Test";
-    $scope.segment="Test";
-    $scope.beaconmarkers="Test";
-  
- 
-});
+KaRTA.controller('AppCtrl', function AppCtrl($scope, data) {
+    var file;
 
+    $scope.loadData = function() {
+        $scope.info = data.getInformation();
+    }
+
+    $scope.setFile = function(element) {
+        $scope.$apply(function() {
+            $scope.file = element.files[0];
+        })
+
+        data.loadFileContent($scope.file);
+    };
+    
+    $scope.loadFile= function() {
+        data.loadFileContent($scope.file);
+    }
+
+});
